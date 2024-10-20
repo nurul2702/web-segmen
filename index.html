@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BBS</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css"/>
+    <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+
+
+    <style>
+        
+        /* Fixed header */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1030;
+        }
+        /* Left sidebar height adjust */
+        .sidebar {
+            position: fixed;
+            top: 56px; /* Height of navbar */
+            bottom: 0;
+            left: 0;
+            width: 200px;
+            z-index: 1020;
+            padding-top: 20px;
+            background-color: #f8f9fa;
+            overflow-y: auto;
+        }
+        /* Main content area */
+        .content {
+            margin-top: 56px; /* Offset for the fixed header */
+            margin-left: 200px; /* Offset for the sidebar */
+            padding: 20px;
+        }
+        /* Map height */
+        #map {
+            height: 300px;
+            background-color: #e9ecef; /* Placeholder background */
+        }
+
+
+        img.leaflet-marker-icon {
+            width: 40px !important;  /* Larger icons for touch screens */
+            height: 20px !important;
+        }
+
+        
+    </style>
+</head>
+<body>
+    <!-- Fixed Header -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" >Peta Jaringan</a>
+        </div>
+    </nav>
+
+    <!-- Left Sidebar Menu -->
+    <nav class="sidebar">
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link active" href="#">Dashboard</a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Main content -->
+    <div class="content">
+        <div class="row">
+            <!-- First content block for map (locked section) -->
+            <div class="col-md-6 mb-4" >
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Map Section</h5>
+                        <div id="map">
+                            <!-- Placeholder for Map -->
+                            Map will be displayed here.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 mb-4" >
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Keterangan Peta</h5>
+                        <div id="map">
+                                                <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Jenis</th>
+                                    <th>Jml</th>
+                                    <th>Open</th>
+                                    <th>Verified</th>
+                            
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Crossing</td>
+                                    <td>16</td>
+                                    <td>12</td>
+                                    <td>4</td>
+
+                                </tr>
+                                <tr>
+                                    <td>Warga</td>
+                                    <td>4</td>
+                                    <td>3</td>
+                                    <td>1</td>
+
+                                </tr>
+
+                            </tbody>
+                        </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        <div class="row">
+
+            <!-- Second content block for table -->
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Data Titik Rawan</h5>
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Koord</th>
+                                    <th>Jenis</th>
+                                    <th>Level</th>
+                                    <th>Jarak</th>                                    
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>John Doe</td>
+                                    <td>25</td>
+                                    <td>25</td>
+                                    <td>New York</td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>Jane Smith</td>
+                                    <td>30</td>
+                                    <td>30</td>
+
+                                    <td>Los Angeles</td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>Mike Johnson</td>
+                                    <td>35</td>
+                                    <td>30</td>
+
+                                    <td>Chicago</td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>John Doe</td>
+                                    <td>25</td>
+                                    <td>New York</td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>Jane Smith</td>
+                                    <td>30</td>
+                                    <td>30</td>
+
+                                    <td>Los Angeles</td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>Mike Johnson</td>
+                                    <td>35</td>
+                                    <td>Chicago</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+   <footer class="bg-info text-white text-center py-3">
+        <div class="container">
+            <p>&copy; TELKOM AKSES Bandung Barat & Sukabumi.</p>
+            <p>Contact us at: <a href="mailto:info@mywebsite.com" class="text-white">info@mywebsite.com</a></p>
+        </div>
+    </footer>
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Creating map options
+        var mapOptions = {
+            center:[ -0.913378, 119.873187], // Masohi
+            zoom: 12
+        };
+
+        // Creating a map object
+        var map = new L.map('map', mapOptions);
+
+        // Creating a Layer object
+        var layer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
+
+        // Watermark logo Indihome
+        L.Control.Watermark = L.Control.extend({
+            onAdd: function(map) {
+                var img = L.DomUtil.create('img');
+                img.src = 'https://www.telkom.co.id/images/logo_horizontal.svg';
+                img.style.width = '150px';  // Adjusted size for mobile
+                return img;
+            },
+            onRemove: function(map) {
+                // Nothing to do here
+            }
+        });
+
+        L.control.watermark = function(opts) {
+            return new L.Control.Watermark(opts);
+        }
+
+        L.control.watermark({ position: 'topright' }).addTo(map);
+
+        // Icon definitions
+        var kantor = L.icon({
+            iconUrl: 'http://maps.google.com/mapfiles/ms/icons/rangerstation.png',
+            iconSize: [40, 40],  // Adjust icon size for mobile
+        });
+		//--- titik rawan warna merah//
+        var red = L.icon({
+            iconUrl: 'http://maps.google.com/mapfiles/ms/icons/yellow.png',
+            iconSize: [40, 40],  // Adjust icon size for mobile
+        });
+
+		//--- titik rawan warna merah//
+        var yellow = L.icon({
+            iconUrl: 'http://maps.google.com/mapfiles/ms/icons/yellow.png',
+            iconSize: [40, 40],  // Adjust icon size for mobile
+        });
+
+
+
+        // ODP Marker Data
+        var odp_merah = [
+            ["ODP-MSH-FAC/29",-0.924665865694231,119.880217896352 , "<p>Titik Rawan"],
+            ["ODP-MSH-FAC/45", -0.924665865694231,119.880217896352, "<p>Titik Rawan"],
+            ["ODP-MSH-FAC/28",-0.922166367820986,119.858404768222 , "<p>Titik Rawan"],
+            ["ODP-MSH-FAC/04",-0.922207016023372,119.856327916166 , "<p>Titik Rawan"],
+            ["ODP-MSH-FAB/33",-0.903537431202855,119.856113809207 , "<p>Titik Rawan"],
+            ["ODP-MSH-FAC/19",-0.898810313818541,119.851758965708 , "<p>Titik Rawan"],
+            ["ODP-MSH-FAC/38",-0.895758009373378,119.851321156251 , "<p>Titik Rawan"],
+        ];
+
+ 
+        // Add ODP markers to map
+        for (var i = 0; i < odp_merah.length; i++) {
+            var marker = new L.marker([odp_merah[i][1], odp_merah[i][2]], {icon: red})
+                .bindPopup(odp_merah[i][0] + odp_merah[i][3])
+                .addTo(map);
+        }
+
+
+	const polyline = L.polyline([
+                [-6.656108, 106.847114],
+                [-6.777657, 106.787172],
+
+	]).addTo(map).bindPopup('Ruas Kabel Z');
+
+
+
+        // Adding layer to the map
+        map.addLayer(layer);
+    </script>
+</body>
+</html>
